@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Linq;
 
 namespace CakeCoverageTest
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var arg = args.FirstOrDefault();
+            var greeter = new Greeter();
+            var salutation = greeter.Greet(arg);
+            Console.WriteLine(salutation);
         }
     }
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeCoverageTest", "CakeCoverageTest\CakeCoverageTest.csproj", "{5DD9AD8E-CE36-4AB2-AE99-813769878FBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeCoverageTest.Test", "CakeCoverageTest.Test\CakeCoverageTest.Test.csproj", "{B2CE1209-ED4B-4E11-BF36-DD07C956B858}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5DD9AD8E-CE36-4AB2-AE99-813769878FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD9AD8E-CE36-4AB2-AE99-813769878FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD9AD8E-CE36-4AB2-AE99-813769878FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2CE1209-ED4B-4E11-BF36-DD07C956B858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2CE1209-ED4B-4E11-BF36-DD07C956B858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2CE1209-ED4B-4E11-BF36-DD07C956B858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2CE1209-ED4B-4E11-BF36-DD07C956B858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
