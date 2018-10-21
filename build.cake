@@ -37,33 +37,23 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSBuild("./CakeCoverageTest.sln", new MSBuildSettings() {
-        Configuration = configuration
-    });
+    var settings = new DotNetCoreBuildSettings { Configuration = configuration };
+    DotNetCoreBuild("./CakeCoverageTest.sln", settings);
 });
 
-// the VSTest task has a bug where it doesn't look in the right location for vstest.console.exe, see https://github.com/cake-build/cake/issues/1522#issuecomment-341612194
-VSTestSettings FixToolPath(VSTestSettings settings)
-{
-    settings.ToolPath = VSWhereLatest(new VSWhereLatestSettings { 
-        Requires = "Microsoft.VisualStudio.PackageGroup.TestTools.Core" 
-    }).CombineWithFilePath(File(@"Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"));
-    return settings;
-}
-
-Task("Test-VSTest")
-    .Description("Runs unit tests through VSTest with code coverage.  This is typically for VSTS, but could be run locally.")
+Task("Test")
+    .Description("Runs unit tests.")
     .IsDependentOn("Build")
     .Does(() => 
 {
-    Information("Looking for tests in: " + testLocation);
-    VSTest(testLocation, FixToolPath(new VSTestSettings
-    {
-        EnableCodeCoverage = true,
-        InIsolation = true, // run in a separate process to get coverage data accurately
-        Logger = "trx", // VSTS only speaks trx
-        TestAdapterPath = "tools/xunit.runner.visualstudio.2.4.0/build/_common" // run VSTest with the xunit adapter
-    }));
+    var testLocation = File("./CakeCoverageTest.Test/CakeCoverageTest.Test.csproj");
+    var settings = new DotNetCoreTestSettings {
+        NoBuild = true,
+        ArgumentCustomization = args => args
+            .Append("--collect").AppendQuoted("Code Coverage")
+            .Append("--logger").Append("trx")
+    };
+    DotNetCoreTest(testLocation, settings);
 });
 
 Task("Default")
