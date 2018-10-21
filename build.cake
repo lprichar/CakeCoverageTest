@@ -48,6 +48,7 @@ Task("Test")
 {
     var testLocation = File("./CakeCoverageTest.Test/CakeCoverageTest.Test.csproj");
     var settings = new DotNetCoreTestSettings {
+        Configuration = configuration,
         NoBuild = true,
         ArgumentCustomization = args => args
             .Append("--collect").AppendQuoted("Code Coverage")
